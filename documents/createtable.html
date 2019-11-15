@@ -1,0 +1,181 @@
+<html>
+Create Table Statements
+<br><br>
+=======================================================================
+<br>
+admin_activity
+<br><br>
+
+create table admin_activity<br>
+(<br>
+activity_id   int auto_increment<br>
+primary key,<br>
+activity_name varchar(50) not null<br>
+);
+
+<br><br>
+=======================================================================
+<br>
+admin_permission
+<br><br>
+
+create table admin_permission<br>
+(
+<br>
+activity_id int  not null,<br>
+user_role   char not null,<br>
+primary key (user_role, activity_id),<br>
+constraint FK_adminperm_adminactivity<br>
+foreign key (activity_id) references admin_activity (activity_id)<br>
+on update cascade on delete cascade<br>
+);<br>
+
+<br><br>
+=======================================================================
+<br>
+category
+<br><br>
+
+create table category<br>
+(<br>
+category_id   int auto_increment<br>
+primary key,<br>
+category_name varchar(30) not null<br>
+);
+
+<br><br>
+=======================================================================
+<br>
+prod_img
+<br><br>
+
+create table prod_img<br>
+(<br>
+img_id     int auto_increment<br>
+primary key,<br>
+img_name   varchar(50) not null,<br>
+product_id int         not null,<br>
+constraint prod_img_product_product_id_fk<br>
+foreign key (product_id) references product (product_id)<br>
+on update cascade on delete cascade<br>
+);<br>
+
+<br><br>
+=======================================================================
+<br>
+prod_type
+<br><br>
+
+create table prod_type<br>
+(<br>
+product_id      int not null,<br>
+type_id         int not null,<br>
+prod_type_stock int not null,<br>
+prod_type_sold  int not null,<br>
+primary key (product_id, type_id),<br>
+constraint FK_prodtype_product_prodid<br>
+foreign key (product_id) references product (product_id)<br>
+on update cascade on delete cascade,<br>
+constraint FK_prodtype_type_typeid<br>
+foreign key (type_id) references type (type_id)<br>
+on update cascade<br>
+);
+
+<br><br>
+=======================================================================
+<br>
+product
+<br><br>
+
+create table product<br>
+(<br>
+product_id    int auto_increment<br>
+primary key,<br>
+product_name  varchar(30)  not null,<br>
+product_desc  varchar(150) not null,<br>
+date_added    datetime     not null,<br>
+product_price float(8, 2)  not null<br>
+);
+
+
+<br><br>
+=======================================================================
+<br>
+product_category
+
+<br><br>
+create table product_category<br>
+(<br>
+product_id  int not null,<br>
+category_id int not null,<br>
+primary key (product_id, category_id),<br>
+constraint FK_prod_cat_cat<br>
+foreign key (category_id) references category (category_id)<br>
+on update cascade on delete cascade,<br>
+constraint FK_prod_cat_prod<br>
+foreign key (product_id) references product (product_id)<br>
+on update cascade on delete cascade<br>
+);
+
+<br><br>
+=======================================================================
+<br>
+project
+<br><br>
+
+create table project<br>
+(<br>
+project_id       int auto_increment<br>
+primary key,<br>
+project_name     varchar(50)  not null,<br>
+project_desc     varchar(500) not null,<br>
+project_goal     int          not null,<br>
+project_raised   int          not null,<br>
+project_location varchar(30)  not null,<br>
+project_img      varchar(100) null<br>
+);
+
+<br><br>
+=======================================================================
+<br>
+type
+<br><br>
+
+create table type<br>
+(<br>
+type_id    int auto_increment<br>
+primary key,<br>
+type_name  varchar(50) not null,<br>
+type_group varchar(50) not null<br>
+);
+
+<br><br>
+=======================================================================
+<br>
+user
+<br><br>
+
+create table user <br>
+(<br>
+user_id       int auto_increment<br>
+primary key,<br>
+user_fname    varchar(40)  not null,<br>
+user_lname    varchar(40)  not null,<br>
+user_address  varchar(80)  not null,<br>
+user_email    varchar(30)  not null,<br>
+user_mobile   char(10)     null,<br>
+user_phone    char(10)     null,<br>
+user_maillist char         not null,<br>
+user_role     char         not null,<br>
+user_password varchar(100) not null,<br>
+constraint FK_user_adminperm<br>
+foreign key (user_role) references admin_permission (user_role)
+);<br>
+
+
+<br><br>
+=======================================================================
+<br>
+END
+
+</html>

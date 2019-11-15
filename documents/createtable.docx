@@ -1,0 +1,149 @@
+<html>
+            Create Table Statements
+=======================================================================
+admin_activity
+
+create table admin_activity
+(
+    activity_id   int auto_increment
+        primary key,
+    activity_name varchar(50) not null
+);
+
+
+=======================================================================
+admin_permission
+
+create table admin_permission
+(
+    activity_id int  not null,
+    user_role   char not null,
+    primary key (user_role, activity_id),
+    constraint FK_adminperm_adminactivity
+        foreign key (activity_id) references admin_activity (activity_id)
+            on update cascade on delete cascade
+);
+
+=======================================================================
+category
+
+create table category
+(
+    category_id   int auto_increment
+        primary key,
+    category_name varchar(30) not null
+);
+
+=======================================================================
+prod_img
+
+create table prod_img
+(
+    img_id     int auto_increment
+        primary key,
+    img_name   varchar(50) not null,
+    product_id int         not null,
+    constraint prod_img_product_product_id_fk
+        foreign key (product_id) references product (product_id)
+            on update cascade on delete cascade
+);
+
+=======================================================================
+prod_type
+
+create table prod_type
+(
+    product_id      int not null,
+    type_id         int not null,
+    prod_type_stock int not null,
+    prod_type_sold  int not null,
+    primary key (product_id, type_id),
+    constraint FK_prodtype_product_prodid
+        foreign key (product_id) references product (product_id)
+            on update cascade on delete cascade,
+    constraint FK_prodtype_type_typeid
+        foreign key (type_id) references type (type_id)
+            on update cascade
+);
+
+=======================================================================
+product
+
+create table product
+(
+    product_id    int auto_increment
+        primary key,
+    product_name  varchar(30)  not null,
+    product_desc  varchar(150) not null,
+    date_added    datetime     not null,
+    product_price float(8, 2)  not null
+);
+
+
+=======================================================================
+product_category
+
+create table product_category
+(
+    product_id  int not null,
+    category_id int not null,
+    primary key (product_id, category_id),
+    constraint FK_prod_cat_cat
+        foreign key (category_id) references category (category_id)
+            on update cascade on delete cascade,
+    constraint FK_prod_cat_prod
+        foreign key (product_id) references product (product_id)
+            on update cascade on delete cascade
+);
+
+=======================================================================
+project
+
+create table project
+(
+    project_id       int auto_increment
+        primary key,
+    project_name     varchar(50)  not null,
+    project_desc     varchar(500) not null,
+    project_goal     int          not null,
+    project_raised   int          not null,
+    project_location varchar(30)  not null,
+    project_img      varchar(100) null
+);
+
+=======================================================================
+type
+
+create table type
+(
+    type_id    int auto_increment
+        primary key,
+    type_name  varchar(50) not null,
+    type_group varchar(50) not null
+);
+
+=======================================================================
+user
+
+create table user
+(
+    user_id       int auto_increment
+        primary key,
+    user_fname    varchar(40)  not null,
+    user_lname    varchar(40)  not null,
+    user_address  varchar(80)  not null,
+    user_email    varchar(30)  not null,
+    user_mobile   char(10)     null,
+    user_phone    char(10)     null,
+    user_maillist char         not null,
+    user_role     char         not null,
+    user_password varchar(100) not null,
+    constraint FK_user_adminperm
+        foreign key (user_role) references admin_permission (user_role)
+);
+
+
+=======================================================================
+END
+
+</html>
