@@ -1,0 +1,19 @@
+User ID | Name            | Email                      | Password
+3       | Tom Chen        | thomas_chen@hotmail.com    | Tr0ub4dor&3
+4       | Lisa Baker      | lisa_baker@gmail.com       | password
+5       | Kevin Acker     | kevin_acker@outlook.com    | mdzs
+6       | Andrew Rogers   | andrew_rogers@gmail.com    | svsss
+7       | Charlotte Patch | charlotte_patch@gmail.com  | tgcf
+8       | Harry Helper    | harry_helper@famox.com     | correct horse battery staple
+19      | Sally Clam      | huhuhu@hotmail.com         | yushi
+20      | Rosalinda Kilt  | rkilt@und.dl	       | drk8
+21      | Fraser Havock   | fhavock7@rch.de	       | wwx
+22	| Leif Rothery	  | lrotheryc@studiopress.com  | eming
+23	| Dale Bushaway	  | dbushaway67@dev.cn	       | sqx
+24	| Jill Burman	  | jburmanf@outlook.com       | pantomime
+25	| Seth Pyne	  | spyneh@gibberish.au	       | jinxed
+26	| Nerita Statter  | nstatter@something.com     | nature
+27	| Lalo Mitchelson | lmitchelson9@atom.com      | dumplings
+
+all the other passwords are just: a
+bc i gave up lol 
